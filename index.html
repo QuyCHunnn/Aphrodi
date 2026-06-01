@@ -754,6 +754,36 @@
   color: var(--light-gray);
   margin-bottom: 20px;
 }
+  /* FULL BOOK BUTTON */
+
+.full-book-btn-wrapper {
+  text-align: center;
+  margin: 80px 0;
+}
+
+.full-book-btn {
+  display: inline-block;
+  padding: 16px 36px;
+  border: 1px solid rgba(201,168,76,0.4);
+  color: var(--gold-light);
+  text-decoration: none;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: rgba(201,168,76,0.05);
+  transition: all 0.35s ease;
+  border-radius: 6px;
+}
+
+.full-book-btn:hover {
+  transform: translateY(-3px);
+  color: var(--white);
+  border-color: var(--gold);
+  box-shadow:
+    0 0 25px rgba(201,168,76,0.25),
+    0 0 60px rgba(201,168,76,0.12);
+}
 </style>
 </head>
 <body>
@@ -1568,7 +1598,6 @@
   <p class="footer-title">THE APHRODI ARCHIVE</p>
   <p>From Eindhoven to Immortality · A Story of Resilience</p>
   <section class="final-poster reveal">
-
   <div class="final-poster-header">
     <span>The Final Chapter</span>
     <h2>The Immortal No.9</h2>
@@ -1592,7 +1621,15 @@
       từ chối đầu hàng số phận.
     </p>
   </div>
-
+<div class="full-book-btn-wrapper reveal">
+  <a
+    href="https://docs.google.com/document/d/1VnxMbAIXxvm4FUOaen3CmEETW3qe3z8JBILePW7DQso/edit?usp=sharing"
+    target="_blank"
+    class="full-book-btn"
+  >
+    Tất cả tại The Aphrodi Archive
+  </a>
+</div>
 </section>
 </footer>
 
