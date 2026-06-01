@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE APHRODI ARCHIVE — From Eindhoven to Immortality</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8CC7A;
+    --gold-dim: #8B6B2A;
+    --black: #080808;
+    --dark: #0F0F0F;
+    --dark2: #161616;
+    --gray: #888;
+    --light-gray: #CCC;
+    --white: #F5F2ED;
+    --red: #B02020;
+    --blue-italy: #1a3a6b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--black);
+    color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-dim); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 20px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 80% at 20% 80%, rgba(176,32,32,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 70% at 80% 20%, rgba(26,58,107,0.08) 0%, transparent 60%);
+    z-index: 0;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 0;
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 900px; }
+
+  .hero-pretitle {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(56px, 10vw, 110px);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -3px;
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 40%, var(--gold-dim) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 1s 0.5s forwards;
+  }
+
+  .hero-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(16px, 2.5vw, 24px);
+    color: var(--light-gray);
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+    opacity: 0;
+    animation: fadeUp 1s 0.7s forwards;
+  }
+
+  .hero-divider {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 50px;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+  }
+
+  .hero-quote {
+    font-size: clamp(16px, 2vw, 20px);
+    font-style: italic;
+    color: var(--gray);
+    max-width: 600px;
+    margin: 0 auto 60px;
+    opacity: 0;
+    animation: fadeUp 1s 1.1s forwards;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 1s 1.5s forwards;
+  }
+
+  .hero-scroll span {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(var(--gold-dim), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+  }
+
+  /* TIMELINE NAV */
+  .timeline-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(8,8,8,0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    padding: 0 40px;
+    overflow-x: auto;
+  }
+
+  .timeline-nav::-webkit-scrollbar { height: 2px; }
+
+  .timeline-nav-inner {
+    display: flex;
+    gap: 0;
+    min-width: max-content;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+
+  .nav-item {
+    padding: 16px 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--gray);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+  }
+
+  .nav-item:hover, .nav-item.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  /* JOURNEY MAP */
+  .journey-section {
+    padding: 100px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .journey-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    text-align: center;
+  }
+
+  .journey-map {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-bottom: 80px;
+  }
+
+  .journey-stop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 90px;
+  }
+
+  .stop-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .stop-dot::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+
+  .stop-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .stop-label {
+    font-size: 11px;
+    color: var(--gray);
+    text-align: center;
+    max-width: 80px;
+    line-height: 1.3;
+  }
+
+  .journey-arrow {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+    margin-bottom: 40px;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .journey-arrow::after {
+    content: '▶';
+    position: absolute;
+    right: -5px;
+    top: -8px;
+    color: var(--gold);
+    font-size: 8px;
+  }
+
+  /* CHAPTERS */
+  .chapter {
+    padding: 80px 0;
+    border-top: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .chapter-container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .chapter-header {
+    margin-bottom: 60px;
+  }
+
+  .chapter-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .chapter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  .chapter-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--gold);
+    margin-bottom: 30px;
+  }
+
+  .chapter-intro {
+    font-size: 20px;
+    color: var(--light-gray);
+    line-height: 1.8;
+    border-left: 2px solid var(--gold);
+    padding-left: 24px;
+    margin-bottom: 50px;
+  }
+
+  .chapter-body p {
+    font-size: 17px;
+    color: rgba(245,242,237,0.85);
+    line-height: 1.9;
+    margin-bottom: 24px;
+  }
+
+  .chapter-body p:first-child::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 900;
+    color: var(--gold);
+    float: left;
+    line-height: 0.75;
+    margin: 8px 12px -4px 0;
+  }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    margin: 50px 0 20px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  /* QUOTE */
+  .pullquote {
+    margin: 50px 0;
+    padding: 40px;
+    background: rgba(201,168,76,0.04);
+    border: 1px solid rgba(201,168,76,0.15);
+    position: relative;
+  }
+
+  .pullquote::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 120px;
+    color: var(--gold-dim);
+    opacity: 0.4;
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    line-height: 1;
+  }
+
+  .pullquote p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(18px, 2.5vw, 24px) !important;
+    color: var(--gold-light) !important;
+    line-height: 1.6 !important;
+    margin-bottom: 0 !important;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* STAT BOX */
+  .stat-box {
+    margin: 50px 0;
+    padding: 40px;
+    background: linear-gradient(135deg, rgba(201,168,76,0.06) 0%, rgba(201,168,76,0.02) 100%);
+    border: 1px solid rgba(201,168,76,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+
+  .stat-box-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .stat-row {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .stat-item { flex: 1; min-width: 120px; }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  /* TRANSITION BOX */
+  .transition-box {
+    margin: 50px 0;
+    padding: 30px;
+    border-left: 3px solid var(--red);
+    background: rgba(176,32,32,0.05);
+  }
+
+  .transition-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  /* MEDICAL BOX */
+  .medical-box {
+    margin: 50px 0;
+    padding: 30px;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.08);
+    font-family: 'Space Mono', monospace;
+  }
+
+  .medical-header {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(176,32,32,0.3);
+  }
+
+  .medical-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--light-gray);
+    margin-bottom: 8px;
+    gap: 20px;
+  }
+
+  .medical-row span:first-child { color: var(--gray); }
+  .medical-row span:last-child { color: var(--red); }
+
+  /* LETTER SECTION */
+  .letter-section {
+    padding: 100px 40px;
+    background: var(--dark2);
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .letter-container {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .letter-header {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .letter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 4vw, 38px);
+    font-style: italic;
+    text-align: center;
+    color: var(--white);
+    margin-bottom: 60px;
+    line-height: 1.3;
+  }
+
+  .letter-body p {
+    font-size: 17px;
+    color: rgba(245,242,237,0.8);
+    line-height: 1.9;
+    margin-bottom: 24px;
+  }
+
+  .letter-sig {
+    text-align: right;
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .letter-sig span {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 28px;
+    color: var(--gold);
+  }
+
+  .letter-sig-location {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gray);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  /* BULLET POINTS styled */
+  .chapter-body ul {
+    margin: 20px 0 24px 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .chapter-body ul li {
+    font-size: 17px;
+    color: rgba(245,242,237,0.8);
+    line-height: 1.8;
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .chapter-body ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold-dim);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 60px 40px;
+    text-align: center;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  footer .footer-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold-dim));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+
+  footer p {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--gray);
+    text-transform: uppercase;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* HIGHLIGHT */
+  .highlight { color: var(--gold); font-style: italic; }
+
+  /* CLUB TAG */
+  .club-tag {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    margin: 2px;
+  }
+
+  /* FULL WIDTH BANNER */
+  .chapter-banner {
+    width: 100%;
+    padding: 60px 40px;
+    text-align: center;
+    background: linear-gradient(180deg, transparent, rgba(201,168,76,0.04) 50%, transparent);
+    margin: 60px 0;
+  }
+
+  .chapter-banner .big-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(80px, 15vw, 180px);
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--gold) 0%, transparent 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+  }
+
+  .chapter-banner .big-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+  /* =========================
+   POSTER SECTIONS
+========================= */
+
+.hero-poster {
+  max-width: 1000px;
+  margin: 0 auto 60px;
+  opacity: 0;
+  animation: fadeUp 1s 0.2s forwards;
+}
+
+.hero-poster img {
+  width: 100%;
+  display: block;
+  border-radius: 14px;
+  border: 1px solid rgba(201,168,76,0.25);
+  box-shadow:
+    0 25px 80px rgba(0,0,0,0.8),
+    0 0 60px rgba(201,168,76,0.12);
+}
+
+.final-poster {
+  padding: 120px 40px;
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(201,168,76,0.08),
+      transparent 70%
+    );
+}
+
+.final-poster-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.final-poster-header span {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.final-poster-header h2 {
+  margin-top: 20px;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px,6vw,80px);
+  color: var(--white);
+}
+
+.final-poster-image {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.final-poster-image img {
+  width: 100%;
+  display: block;
+  border-radius: 16px;
+  border: 1px solid rgba(201,168,76,0.25);
+  box-shadow:
+    0 30px 120px rgba(0,0,0,0.85),
+    0 0 80px rgba(201,168,76,0.15);
+}
+
+.final-poster-text {
+  max-width: 900px;
+  margin: 60px auto 0;
+  text-align: center;
+}
+
+.final-poster-text p {
+  font-size: 22px;
+  line-height: 1.9;
+  color: var(--light-gray);
+  margin-bottom: 20px;
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-poster">
+    <img
+    src="images/poster-cover.jpg"
+    alt="The Aphrodi Archive Cover">
+  </div>
+    <p class="hero-pretitle">The Definitive Story</p>
+    <h1 class="hero-title">THE APHRODI<br>ARCHIVE</h1>
+    <p class="hero-subtitle">From Eindhoven to Immortality</p>
+    <div class="hero-divider"></div>
+    <p class="hero-quote">
+      "Điều quý giá nhất mà bóng đá ban tặng cho tôi... chưa bao giờ là cái đích đến. Nó là hành trình."
+    </p>
+    <div style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap; opacity:0; animation: fadeUp 1s 1.3s forwards;">
+      <span class="club-tag">PSV</span>
+      <span class="club-tag">Strasbourg</span>
+      <span class="club-tag">Frankfurt</span>
+      <span class="club-tag">Valencia</span>
+      <span class="club-tag">Arsenal</span>
+      <span class="club-tag">Atlético</span>
+      <span class="club-tag">Barcelona</span>
+      <span class="club-tag">Juventus</span>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Cuộn xuống</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- STICKY NAV -->
+<nav class="timeline-nav">
+  <div class="timeline-nav-inner">
+    <a href="#ch0" class="nav-item">Mở Đầu</a>
+    <a href="#ch1" class="nav-item">I · Eindhoven</a>
+    <a href="#ch2" class="nav-item">II · Strasbourg</a>
+    <a href="#ch3" class="nav-item">III · Frankfurt</a>
+    <a href="#ch4" class="nav-item">IV · Valencia</a>
+    <a href="#ch5" class="nav-item">V · Arsenal</a>
+    <a href="#ch6" class="nav-item">VI · World Cup</a>
+    <a href="#ch7" class="nav-item">VII · Barcelona</a>
+    <a href="#ch8" class="nav-item">VIII · Juventus</a>
+    <a href="#letter" class="nav-item">Thư Cuối</a>
+  </div>
+</nav>
+
+<!-- JOURNEY MAP -->
+<section class="journey-section reveal">
+  <p class="journey-title">Hành Trình Của Một Huyền Thoại</p>
+  <div class="journey-map">
+    <div class="journey-stop">
+      <div class="stop-dot"></div>
+      <span class="stop-name">PSV</span>
+      <span class="stop-label">Kẻ bị hoài nghi</span>
+    </div>
+    <div class="journey-arrow"></div>
+    <div class="journey-stop">
+      <div class="stop-dot"></div>
+      <span class="stop-name">Strasbourg</span>
+      <span class="stop-label">Kẻ sinh tồn</span>
+    </div>
+    <div class="journey-arrow"></div>
+    <div class="journey-stop">
+      <div class="stop-dot"></div>
+      <span class="stop-name">Frankfurt</span>
+      <span class="stop-label">Sự trỗi dậy</span>
+    </div>
+    <div class="journey-arrow"></div>
+    <div class="journey-stop">
+      <div class="stop-dot"></div>
+      <span class="stop-name">Valencia</span>
+      <span class="stop-label">Phượng hoàng</span>
+    </div>
+    <div class="journey-arrow"></div>
+    <div class="journey-stop">
+      <div class="stop-dot"></div>
+      <span class="stop-name">Arsenal</span>
+      <span class="stop-label">Nhà tù giấc mơ</span>
+    </div>
+    <div class="journey-arrow"></div>
+    <div class="journey-stop">
+      <div class="stop-dot" style="background:var(--gold-light); box-shadow: 0 0 20px rgba(201,168,76,0.5);"></div>
+      <span class="stop-name">Atlético</span>
+      <span class="stop-label">58 bàn thắng</span>
+    </div>
+    <div class="journey-arrow"></div>
+    <div class="journey-stop">
+      <div class="stop-dot"></div>
+      <span class="stop-name">Barcelona</span>
+      <span class="stop-label">Thánh địa</span>
+    </div>
+    <div class="journey-arrow"></div>
+    <div class="journey-stop">
+      <div class="stop-dot" style="background:var(--gold-light); box-shadow: 0 0 30px rgba(201,168,76,0.7);"></div>
+      <span class="stop-name">Juventus</span>
+      <span class="stop-label">Sự bất tử</span>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 0: MỞ ĐẦU -->
+<section class="chapter" id="ch0">
+  <div class="chapter-container">
+    <div class="chapter-header reveal">
+      <span class="chapter-num">Chương Mở Đầu</span>
+      <h2 class="chapter-title">Ký Ức Bóng Đêm Và<br>Ánh Đèn Eindhoven</h2>
+    </div>
+    <div class="chapter-body reveal">
+      <p>Có những gã bước vào ngôi đền huyền thoại bằng sự lạnh lùng của những con số thống kê. Họ đếm danh hiệu như thể đếm tiền, tích lũy bàn thắng như những cỗ máy vô tri được lập trình sẵn.</p>
+      <p>Nhưng bóng đá không phải là một phép tính. Và Aphrodi chưa bao giờ là một cỗ máy.</p>
+      <p>Nếu lật lại cuốn sổ bám bụi của lịch sử, lướt qua những chương chói lọi nhất, người ta sẽ thấy một Aphrodi rực rỡ dưới ánh đèn nghẹt thở của Champions League, một vị thần kiêu hãnh nâng cao cúp vàng World Cup, một cái tên khiến những khán đài rực lửa phải đồng thanh nín thở. Nhưng nếu chỉ dừng lại ở đỉnh vinh quang đó, bạn sẽ mãi mãi không bao giờ chạm được vào linh hồn của một huyền thoại.</p>
+      <div class="pullquote">
+        <p>Bởi vì chương đầu tiên trong cuốn kinh thánh của cậu ấy không được viết bằng mực vàng. Nó được viết bằng máu, mồ hôi và sự hoài nghi cay đắng.</p>
+      </div>
+      <p>Mùa hè năm ấy, Eindhoven lạnh ngắt. Dưới bầu trời xám xịt của Hà Lan, sân Philips Stadion sừng sững như một đấu trường sẵn sàng nghiền nát những kẻ mộng mơ.</p>
+    </div>
+    <div class="stat-box reveal">
+      <p class="stat-box-title">Thống Kê Ra Mắt · PSV Eindhoven</p>
+      <div class="stat-row">
+        <div class="stat-item">
+          <span class="stat-number">05</span>
+          <span class="stat-label">Trận Đầu Tiên</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">01</span>
+          <span class="stat-label">Bàn Thắng</span>
+        </div>
+      </div>
+    </div>
+    <div class="chapter-body reveal">
+      <p>Chính từ đống tro tàn của năm trận đấu tăm tối đó, một đốm lửa bất tử đã được nhen nhóm. Vì trước khi học được cách chạm tay vào sự bất tử, Aphrodi đã phải học cách sống sót qua những ngày tháng bị người đời quay lưng.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 1 -->
+<section class="chapter" id="ch1">
+  <div class="chapter-container">
+    <div class="chapter-header reveal">
+      <span class="chapter-num">Chương I</span>
+      <h2 class="chapter-title">Kẻ Vô Danh Dưới<br>Màn Mưa Hà Lan</h2>
+      <p class="chapter-subtitle">Bóng Tối Trước Bình Minh</p>
+    </div>
+    <div class="chapter-body reveal">
+      <p>Mọi thiên trường ca trên đời này đều được mở đầu bằng những nốt nhạc trầm buồn, và huyền thoại mang tên Aphrodi cũng không ngoại lệ. Điểm khởi đầu của cậu chẳng có tiếng kèn Trumpet vang dội, không có những ánh đèn Flash chớp tắt liên hồi.</p>
+      <p>Lúc bấy giờ, Aphrodi chỉ là một bóng hình gầy gò, một tiền đạo trẻ đang trầy trật cào cấu từng chút cơ hội để chứng minh mình xứng đáng được tồn tại trong thế giới bóng đá chuyên nghiệp tàn nhẫn.</p>
+    </div>
+
+    <h3 class="section-title reveal">II. Đêm Cô Độc Ở Eindhoven</h3>
+    <div class="pullquote reveal">
+      <p>"Mỗi lần xỏ giày bước qua đường hầm tiến vào thảm cỏ, lồng ngực tôi lại thắt chặt bởi một câu hỏi rát bỏng: 'Mình có thực sự đủ giỏi không?'"</p>
+    </div>
+    <div class="chapter-body reveal">
+      <p>Cậu nhóc Aphrodi khi ấy thường ngồi bó gối nhìn chằm chằm vào bản báo cáo thành tích của chính mình. Năm trận, một bàn. Con số ấy như một cái tát thẳng thừng vào lòng kiêu hãnh, nghe chẳng giống khởi đầu của một vị thần chút nào. Nó giống như bản án tử cho một giấc mơ mộng mị.</p>
+      <p>Nhưng chính trong những đêm dài câm lặng nhìn ra ban công ngập nước mưa của thành phố Eindhoven, cậu đã ngộ ra một chân lý nghiệt ngã: <span class="highlight">Nếu cả thế giới này quay lưng và không ai thèm tin tưởng bạn, thì bạn buộc phải là người đầu tiên tự đặt cược vào chính mình.</span></p>
+    </div>
+
+    <h3 class="section-title reveal">III. Bánh Xe Số Phận Chuyển Bánh</h3>
+    <div class="chapter-body reveal">
+      <p>Ở thời điểm đó, ban lãnh đạo PSV Eindhoven hoàn toàn mù tịt về việc họ đang nắm giữ một kho báu vô giá của tương lai. Nhưng định mệnh luôn có cách vận hành kỳ lạ của nó. Giữa hàng vạn đôi mắt dửng dưng trên khán đài Philips Stadion ngày hôm ấy, có một ánh nhìn rất khác — một ánh mắt sắc sảo, kiên định đến từ một tuyển trạch viên của Strasbourg.</p>
+    </div>
+    <div class="transition-box reveal">
+      <p class="transition-title">Bước Ngoặt Định Mệnh</p>
+      <p style="font-family: 'Space Mono', monospace; font-size: 13px; color: var(--light-gray); line-height: 2;">
+        PSV Eindhoven <span style="color:var(--gold);">────────────►</span> Strasbourg (Pháp)<br>
+        <span style="color:var(--gray); font-size:11px;">(Nơi hoài nghi cậu)</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:var(--gray); font-size:11px;">(Nơi trao cho cậu niềm tin)</span>
+      </p>
+    </div>
+    <div class="pullquote reveal">
+      <p>"Khoảnh khắc vĩ đại nhất đời tôi là khi có một câu lạc bộ chịu nhìn vào một thằng nhóc gầy gò, ghi đúng một bàn sau năm trận, rồi chìa tay ra và bảo: 'Chúng tôi tin cậu'."</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 2 -->
+<section class="chapter" id="ch2">
+  <div class="chapter-container">
+    <div class="chapter-header reveal">
+      <span class="chapter-num">Chương II</span>
+      <h2 class="chapter-title">Chiếc Cầu Nối<br>Ở Strasbourg</h2>
+      <p class="chapter-subtitle">Nơi Đầu Tiên Tin Vào Cậu</p>
+    </div>
+    <div class="chapter-body reveal">
+      <p>Nhiều năm sau, khi Aphrodi đã ngự trị trên đỉnh cao nhất của thế giới bóng đá, giới truyền thông vẫn thường lặp lại một câu hỏi cũ kỹ: <em>"Đâu là bước ngoặt lớn nhất trong sự nghiệp của anh?"</em></p>
+      <p>Câu trả lời của Aphrodi luôn là một gáo nước lạnh dội vào sự suy đoán của đám đông.</p>
+      <p style="font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: var(--gold); text-align:center; margin: 30px 0; letter-spacing: 4px;">"Strasbourg."</p>
+      <p>Chỉ một từ duy nhất. Ngắn gọn, khô khốc và không chút do dự. Nơi đó không mang lại cho cậu danh hiệu lớn đầu tiên, nhưng sở hữu một thứ mà tiền bạc của các gã khổng lồ không mua được: <span class="highlight">Sự công nhận.</span></p>
+    </div>
+
+    <h3 class="section-title reveal">III. Khi Con Quái Vật Thức Tỉnh</h3>
+    <div class="chapter-body reveal">
+      <p>Tại mảnh đất ấy, cái tên Aphrodi bắt đầu được các bình luận viên gọi tên với tần suất dày hơn. Và có một thứ trong máu của cậu đã vĩnh viễn thay đổi.</p>
+    </div>
+    <div class="stat-box reveal">
+      <p class="stat-box-title">Sự Chuyển Dịch Tâm Lý</p>
+      <div class="stat-row">
+        <div class="stat-item">
+          <span class="stat-number" style="font-size:18px; color: var(--gray);">"Mình có đủ giỏi?"</span>
+          <span class="stat-label">Giai Đoạn PSV</span>
+        </div>
+        <div class="stat-item" style="display:flex; align-items:center; justify-content:center;">
+          <span style="color: var(--gold); font-size: 28px;">→</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" style="font-size:18px;">"Mình có thể vĩ đại!"</span>
+          <span class="stat-label">Giai Đoạn Strasbourg</span>
+        </div>
+      </div>
+    </div>
+    <div class="pullquote reveal">
+      <p>"Tôi từng nghĩ mình phải chứng minh cho cả thế giới thấy tôi giỏi đến mức nào. Nhưng sau này tôi mới hiểu, người duy nhất tôi cần chứng minh... chính là bản thân tôi."</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 3 -->
+<section class="chapter" id="ch3">
+  <div class="chapter-container">
+    <div class="chapter-header reveal">
+      <span class="chapter-num">Chương III</span>
+      <h2 class="chapter-title">Giấc Mơ Và<br>Dây Chằng Đứt Gãy</h2>
+      <p class="chapter-subtitle">Sự Hủy Diệt Trong Một Tiếng Rắc</p>
+    </div>
+    <div class="chapter-body reveal">
+      <p>Nếu Strasbourg là thánh đường giúp Aphrodi học được cách tin vào chính mình, thì Eintracht Frankfurt chính là sân khấu vĩ đại nơi cậu bắt đầu ép cả châu Âu phải quỳ gối tin vào cậu.</p>
+      <p>Ở cái tuổi mà những đồng nghiệp cùng trang lứa còn đang loay hoay học cách thích nghi với áp lực, Aphrodi đã biến mình thành nỗi ác mộng khiến các trung vệ lão luyện tại Bundesliga phải thức trắng đêm nghiên cứu cách ngăn cản.</p>
+    </div>
+
+    <h3 class="section-title reveal">II. Tiếng "Rắc" Nghiệt Ngã Trong Đêm</h3>
+    <div class="chapter-body reveal">
+      <p>Nhưng số phận là một gã biên kịch thích trêu đùa. Chính vào lúc cuộc đời cậu đang tiến gần đến sự hoàn hảo nhất, bóng tối quyết định ra tay.</p>
+      <p>Một pha tranh chấp không có gì đặc biệt. Một bước chạy quen thuộc. Một cú tiếp đất sai một phần tư độ.</p>
+      <p style="text-align:center; font-family:'Playfair Display', serif; font-size:48px; font-weight:900; color:var(--red); letter-spacing:6px; margin: 30px 0;">Rắc.</p>
+    </div>
+    <div class="medical-box reveal">
+      <p class="medical-header">⚕ Chẩn Đoán Y Tế Khẩn Cấp</p>
+      <div class="medical-row">
+        <span>Bộ phận</span>
+        <span>Anterior Cruciate Ligament (ACL)</span>
+      </div>
+      <div class="medical-row">
+        <span>Trạng thái</span>
+        <span>Đứt hoàn toàn dây chằng chéo trước</span>
+      </div>
+      <div class="medical-row">
+        <span>Dự kiến nghỉ</span>
+        <span>Vô thời hạn</span>
+      </div>
+    </div>
+    <div class="pullquote reveal">
+      <p>"Tôi sợ. Tôi không sợ những mũi dao mổ, không sợ những tháng ngày làm bạn với chiếc nạng gỗ. Tôi chỉ sợ rằng... sau khi tỉnh dậy, tôi sẽ không còn là chính mình nữa."</p>
+    </div>
+
+    <h3 class="section-title reveal">III. Khi Sự Phản Bội Nhân Danh "Kế Hoạch"</h3>
+    <div class="chapter-body reveal">
+      <ul>
+        <li>Hôm qua: Bạn là vị cứu tinh, là đấng tối cao, là tương lai của cả câu lạc bộ.</li>
+        <li>Hôm nay: Bạn chỉ là một cái tên vô hồn nằm chìm nghỉm trong danh sách chấn thương kéo dài.</li>
+      </ul>
+      <p>Và rồi đến một ngày, họ thậm chí chẳng buồn hỏi nữa. Nhưng nhát dao chí mạng thực sự không đến từ chấn thương. Nó đến từ văn phòng của ban huấn luyện — <span class="highlight">"Cậu không còn nằm trong kế hoạch của đội bóng nữa."</span></p>
+    </div>
+    <div class="pullquote reveal">
+      <p>"Nếu ngày ấy không có cái đầu gối đứt dây chằng đó, có lẽ tôi đã trở thành một cầu thủ giỏi... Nó không lấy đi của tôi bất cứ thứ gì cả. Ngược lại... nó cho tôi tất cả."</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 4 -->
+<section class="chapter" id="ch4">
+  <div class="chapter-container">
+    <div class="chapter-header reveal">
+      <span class="chapter-num">Chương IV</span>
+      <h2 class="chapter-title">Phượng Hoàng<br>Từ Tàn Tro</h2>
+      <p class="chapter-subtitle">Valencia — Nơi Tái Sinh</p>
+    </div>
+    <div class="chapter-body reveal">
+      <p>Người đời thường lầm tưởng rằng thử thách tàn nhẫn nhất trong bóng đá là việc leo lên đỉnh cao danh vọng. Họ đã nhầm. Điều khó khăn nhất... chính là việc phải lầm lũi bắt đầu lại từ chân núi, sau khi bản thân đã từng được chiêm ngưỡng vẻ đẹp lộng lẫy của đỉnh cao.</p>
+      <p>Valencia đơn giản chỉ trao cho cậu một cơ hội — một chiếc phao cứu sinh muộn màng. Nhưng đối với một kẻ đang chết chìm trong vũng bùn của sự ruồng rẫy, một cơ hội duy nhất chính là tất cả những gì cậu cần.</p>
+    </div>
+    <div class="stat-box reveal">
+      <p class="stat-box-title">03 Trận Đầu Tiên Tại Valencia</p>
+      <div class="stat-row">
+        <div class="stat-item">
+          <span class="stat-number">03</span>
+          <span class="stat-label">Số Trận</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">04</span>
+          <span class="stat-label">Bàn Thắng</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">01</span>
+          <span class="stat-label">Kiến Tạo</span>
+        </div>
+      </div>
+    </div>
+    <div class="chapter-body reveal">
+      <p>Các trang báo thể thao tại Madrid và Catalunya đồng loạt giật những dòng tít lớn: <em>"Huyền thoại ACL"</em>, <em>"Kẻ trở về từ cõi chết"</em>, <em>"Tiền đạo không biết đầu hàng"</em>.</p>
+    </div>
+    <div class="pullquote reveal">
+      <p>"Tôi nghĩ về ngày gã huấn luyện viên trưởng bảo tôi không còn nằm trong kế hoạch. Và tôi nhìn xuống thảm cỏ đêm nay để nhận ra... Mình vẫn ở đây. Mình đã sống sót."</p>
+    </div>
+    <div class="chapter-body reveal">
+      <p>Chiến quả đầu tiên đến vào đêm mùa hè rực lửa cuối mùa giải: <span class="highlight">Cúp Nhà Vua Tây Ban Nha (Copa de España).</span> Không đơn thuần là một chiếc cúp vô địch — đây là bằng chứng thép đầu tiên đập tan mọi hoài nghi.</p>
+    </div>
+    <div class="pullquote reveal">
+      <p>"Tôi không chơi bóng để chứng minh họ sai. Tôi chơi bóng để chứng minh bản thân mình đúng."</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 5 -->
+<section class="chapter" id="ch5">
+  <div class="chapter-container">
+    <div class="chapter-header reveal">
+      <span class="chapter-num">Chương V</span>
+      <h2 class="chapter-title">Nhà Tù Của<br>Những Giấc Mơ</h2>
+      <p class="chapter-subtitle">Arsenal — Cung Điện Hay Mê Cung?</p>
+    </div>
+    <div class="chapter-body reveal">
+      <p>Khi gã khổng lồ thành London — Arsenal — chính thức kích hoạt bom tấn mang tên Aphrodi, cả châu Âu đều đồng loạt ngả mũ thừa nhận: Đây chính là bước ngoặt tối thượng để định đoạt số phận của một thiên tài.</p>
+      <p>Nhưng cuộc đời vốn là một kẻ lọc lừa. Không phải cánh cửa hào nhoáng nào dẫn tới cung điện cũng thực sự là lối vào chánh điện.</p>
+    </div>
+
+    <h3 class="section-title reveal">II. Bản Án Tử Cho Bản Năng Săn Mồi</h3>
+    <div class="chapter-body reveal">
+      <p>Cậu nhìn thấy tên mình. Xuất hiện kiêu hãnh trên bảng điện tử. Nhưng vị trí bên dưới không phải là một "Số 9" tự do bắn phá vòng cấm.</p>
+      <p>Người ta vỗ vai cậu và bảo: <span class="highlight">"Hãy chơi ở đây. Tranh chấp, điều tiết và bọc lót."</span> Xa khỏi khung thành. Xa khỏi bản năng. Và vĩnh viễn xa rời chính bản thân mình.</p>
+      <p>Điều đau đớn nhất không phải là việc bạn thất bại hay sút hỏng một quả phạt đền. Điều đau đớn nhất là cảm giác bạn phải bất lực đứng nhìn phiên bản tốt nhất, rực rỡ nhất của bản thân bị bóp nghẹt và lụi tàn từng chút một.</p>
+    </div>
+    <div class="pullquote reveal">
+      <p>"Không. Tôi chỉ hối tiếc vì đã có một quãng thời gian trong đời, tôi cam chịu để người khác định nghĩa mình là ai."</p>
+    </div>
+    <div class="chapter-body reveal">
+      <p><em>Tài năng là chưa đủ. Ý chí là chưa đủ. Ngay cả những nỗ lực kiệt cùng cũng sẽ trở nên vô nghĩa nếu bạn đặt sai chỗ. Một con người muốn chạm tay vào sự vĩ đại, bắt buộc phải được đứng ở đúng hệ sinh thái mà họ được sinh ra để tỏa sáng.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 6 -->
+<section class="chapter" id="ch6">
+  <div class="chapter-container">
+    <div class="chapter-header reveal">
+      <span class="chapter-num">Chương VI</span>
+      <h2 class="chapter-title">Nhà Vua Cô Độc Và<br>Đêm Thiên Thanh Huyền Diệu</h2>
+      <p class="chapter-subtitle">Atlético Madrid & World Cup</p>
+    </div>
+    <div class="chapter-body reveal">
+      <p>Ngày đầu tiên Aphrodi xuất hiện tại Madrid, bầu không khí sặc mùi hoài nghi. Giới truyền thông Madrid dạo ấy chỉ cay độc đặt ra đúng một câu hỏi duy nhất: <em>"Liệu Aphrodi có còn là một tiền đạo thực thụ, hay chỉ là một phế binh hào nhoáng?"</em></p>
+      <p>Câu trả lời được Aphrodi đưa ra ngay lập tức. Khô khốc, lạnh lùng và tàn nhẫn đến mức cực đoan.</p>
+      <p style="text-align:center; font-family:'Playfair Display',serif; font-size:22px; color:var(--gold); margin: 20px 0; letter-spacing:3px;">Bàn thắng. Bàn thắng. Và lại là bàn thắng.</p>
+    </div>
+  </div>
+  <div class="chapter-banner">
+    <span class="big-number">58</span>
+    <span class="big-label">Bàn Thắng · Một Mùa Giải · Atlético Madrid</span>
+  </div>
+  <div class="chapter-container">
+    <div class="stat-box reveal">
+      <p class="stat-box-title">Siêu Bão Thống Kê · Atlético Madrid</p>
+      <div class="stat-row">
+        <div class="stat-item">
+          <span class="stat-number">58</span>
+          <span class="stat-label">Bàn Thắng</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">2</span>
+          <span class="stat-label">Danh Hiệu</span>
+        </div>
+      </div>
+      <p style="font-family:'Space Mono',monospace; font-size:10px; color:var(--gray); margin-top:20px; letter-spacing:2px;">LA LIGA & EUROPA LEAGUE</p>
+    </div>
+
+    <h3 class="section-title reveal">III. Đêm Chung Kết Điên Rồ — Hat-trick World Cup</h3>
+    <div class="chapter-body reveal">
+      <p>Giải vô địch thế giới năm ấy ập đến như một cơn sóng thần ngoài đại dương. Toàn bộ đất nước Ý quyết định đặt cược toàn bộ vận mệnh và kỳ vọng lên bờ vai gầy của một tiền đạo đang ở đỉnh cao phong độ.</p>
+      <p>Và Aphrodi đã hiện thực hóa điều đó theo cái cách ngạo nghễ nhất. Từng trận đấu trôi qua, từng vòng knock-out sinh tử — cậu nghiền nát tất cả.</p>
+    </div>
+    <div class="stat-box reveal" style="background: linear-gradient(135deg, rgba(26,58,107,0.15) 0%, rgba(201,168,76,0.05) 100%); border-color: rgba(26,58,107,0.4);">
+      <p class="stat-box-title" style="color: #6a9fd8;">🏆 Đêm Thánh Đường Rome</p>
+      <p style="font-family:'Playfair Display',serif; font-size:clamp(20px,3vw,30px); font-weight:900; color: var(--white); margin-bottom:16px;">Ý Vô Địch World Cup — Hat-trick Cho Aphrodi</p>
+      <div class="stat-row">
+        <div class="stat-item">
+          <span class="stat-number">3</span>
+          <span class="stat-label">Hat-trick</span>
+        </div>
+        <div class="stat-item" style="display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-style:italic; color:var(--gray); font-size:14px;">Chung kết<br>World Cup</span>
+        </div>
+      </div>
+    </div>
+    <div class="pullquote reveal">
+      <p>"World Cup chưa bao giờ là sân khấu dành cho những kẻ hoàn hảo được sinh ra từ nhung lụa. Nó là thánh đường tôn vinh những kẻ biết cách bước qua đống tro tàn của chính mình."</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 7 -->
+<section class="chapter" id="ch7">
+  <div class="chapter-container">
+    <div class="chapter-header reveal">
+      <span class="chapter-num">Chương VII</span>
+      <h2 class="chapter-title">Thành Phố Của<br>Những Vị Thần</h2>
+      <p class="chapter-subtitle">Barcelona — Linh Hồn Khắc Vào Di Sản</p>
+    </div>
+    <div class="chapter-body reveal">
+      <p>Khi bản hợp đồng bom tấn mang tên Aphrodi được công bố dưới bầu trời Địa Trung Hải, dư luận chỉ nín thở chờ đợi một câu trả lời duy nhất. Barcelona là một tôn giáo, và thánh đường Camp Nou chỉ mở rộng cửa để đón nhận những kẻ sinh ra là để khắc tên mình vào lịch sử.</p>
+    </div>
+    <div class="pullquote reveal">
+      <p>"Kẻ tầm thường chạy theo sự công nhận của đám đông. Người trẻ tuổi điên cuồng săn tìm thành công. Nhưng một bậc vĩ nhân thực thụ... họ chỉ đi tìm ý nghĩa của di sản."</p>
+    </div>
+    <div class="chapter-body reveal">
+      <p>Có những đêm muộn khi trận đấu đã khép lại từ lâu, Aphrodi vẫn ngồi lại trên góc cao của khán đài. Một mình. Cô độc trong bóng tối, nhìn xuống thảm cỏ xanh mướt đang mờ dần theo sương đêm.</p>
+    </div>
+    <div class="transition-box reveal" style="border-left-color: var(--gold);">
+      <p class="transition-title" style="color:var(--gold);">Đêm Muộn Tại Camp Nou</p>
+      <p style="font-style:italic; color:var(--light-gray); line-height: 1.8;">
+        "Tôi đang cố tưởng tượng về cái ngày tôi sẽ rời khỏi nơi này."<br>
+        <span style="color:var(--gray); font-size:14px;">— Aphrodi nói với người lao công già</span>
+      </p>
+    </div>
+
+    <h3 class="section-title reveal">III. Tiếng Sét Giữa Đêm Champions League</h3>
+    <div class="chapter-body reveal">
+      <p>Mùa giải tiếp theo, Barcelona bước vào đấu trường Champions League với vị thế của một kẻ hủy diệt. Cho đến đêm tứ kết định mệnh — một đêm kinh hoàng mà nhiều năm sau, những người chứng kiến vẫn còn rùng mình khi nhắc lại.</p>
+    </div>
+    <div class="stat-box reveal" style="border-color: rgba(176,32,32,0.4); background: rgba(176,32,32,0.05);">
+      <p class="stat-box-title" style="color:var(--red);">Thất Bại Champions League · Tứ Kết</p>
+      <div class="stat-row">
+        <div class="stat-item">
+          <span class="stat-number" style="color:var(--red);">7</span>
+          <span class="stat-label">Bàn Thua</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">4</span>
+          <span class="stat-label">Bàn Gỡ</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" style="color:var(--red);">7-4</span>
+          <span class="stat-label">Tổng Tỷ Số</span>
+        </div>
+      </div>
+    </div>
+    <div class="pullquote reveal">
+      <p>"Tôi chưa bao giờ hối tiếc. Tôi chỉ biết rằng... hành trình của tôi vẫn chưa kết thúc tại đây."</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 8 -->
+<section class="chapter" id="ch8">
+  <div class="chapter-container">
+    <div class="chapter-header reveal">
+      <span class="chapter-num">Chương VIII</span>
+      <h2 class="chapter-title">Khúc Vĩ Thanh<br>Đen Trắng</h2>
+      <p class="chapter-subtitle">Juventus — Hồi Kết Của Thiên Sử Thi</p>
+    </div>
+    <div class="chapter-body reveal">
+      <p>Khi Juventus chính thức gọi tên Aphrodi, đó không còn là một bản hợp đồng bóng đá thông thường nữa. Đó là hồi kết của một thiên sử thi đã được định mệnh đặt bút viết từ rất lâu trước đó.</p>
+    </div>
+    <div class="transition-box reveal" style="border-left-color: var(--white);">
+      <p class="transition-title" style="color:var(--light-gray);">Khoảng Lặng Trước Bước Ngoặt</p>
+      <p style="font-family:'Space Mono',monospace; font-size:12px; color:var(--gray); line-height:2;">
+        Hai bức ảnh trên bàn:<br>
+        → Chiếc cúp vàng World Cup cùng đội tuyển Ý<br>
+        → Một cậu bé mặc chiếc áo sọc trắng-đen Juventus, rộng thùng thình
+      </p>
+    </div>
+    <div class="chapter-body reveal">
+      <p>Tại Juventus, Aphrodi không cần phải chứng minh bất cứ điều gì với thế giới nữa. Cậu bước qua cánh cửa của Bà đầm già với tư cách của một vị vua, một huyền thoại sống. Và trong phòng thay đồ, có một gương mặt thân thuộc đang đứng chờ sẵn — em trai cậu.</p>
+    </div>
+    <div class="pullquote reveal">
+      <p>"Bóng đá suy cho cùng là một trò chơi của những vòng tròn định mệnh. Và Juventus chính là vòng tròn cuối cùng, hoàn hảo nhất của cuộc đời Aphrodi."</p>
+    </div>
+
+    <h3 class="section-title reveal">III. Điểm Cuối Cuộc Hành Hương</h3>
+    <div class="chapter-body reveal">
+      <p>Rồi trận chung kết Champions League vĩ đại cũng đến. Khi bước qua đường hầm tiến vào thảm cỏ, bộ não của Aphrodi trôi ngược về quá khứ — PSV với 5 trận 1 bàn, Strasbourg, Frankfurt, Valencia, Arsenal, Madrid, Rome... Tách. Tiếng còi khai cuộc vang lên.</p>
+      <p>Chín mươi phút nghẹt thở trôi qua. Để rồi, tiếng còi mãn cuộc vang lên, đóng đinh số phận: <span class="highlight">Juventus chính thức trở thành nhà vua của châu Âu.</span></p>
+    </div>
+    <div class="stat-box reveal" style="background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(201,168,76,0.06)); border: 1px solid rgba(201,168,76,0.3);">
+      <p class="stat-box-title">Bộ Sưu Tập Danh Hiệu · Toàn Sự Nghiệp</p>
+      <div class="stat-row" style="flex-wrap:wrap; gap:20px;">
+        <div class="stat-item" style="min-width:100px;">
+          <span class="stat-number">🌍</span>
+          <span class="stat-label">World Cup</span>
+        </div>
+        <div class="stat-item" style="min-width:100px;">
+          <span class="stat-number">🏆</span>
+          <span class="stat-label">Champions League</span>
+        </div>
+        <div class="stat-item" style="min-width:100px;">
+          <span class="stat-number">🥇</span>
+          <span class="stat-label">La Liga</span>
+        </div>
+        <div class="stat-item" style="min-width:100px;">
+          <span class="stat-number">⚽</span>
+          <span class="stat-label">Serie A</span>
+        </div>
+        <div class="stat-item" style="min-width:100px;">
+          <span class="stat-number">🌟</span>
+          <span class="stat-label">Quả Bóng Vàng</span>
+        </div>
+      </div>
+    </div>
+    <div class="pullquote reveal">
+      <p>"Tôi từng ngây thơ nghĩ rằng bóng đá là câu chuyện về những chiếc cúp vô địch. Nhưng đến ngày hôm nay, tôi mới hiểu ra: Điều quý giá nhất mà bóng đá ban tặng cho tôi... chưa bao giờ là cái đích đến. Nó là hành trình."</p>
+    </div>
+  </div>
+</section>
+
+<!-- LETTER -->
+<section class="letter-section" id="letter">
+  <div class="letter-container">
+    <p class="letter-header">Di Sản Cuối Cùng</p>
+    <h2 class="letter-title">Gửi Bóng Đá, Và Gửi<br>Đứa Trẻ Ở Eindhoven</h2>
+    <div class="letter-body reveal">
+      <p>Nếu bạn đang đọc những dòng này, điều đó có nghĩa là chiếc áo số 9 của tôi đã được gấp gọn gàng trong tủ kính của Allianz Stadium. Đôi giày đinh từng cùng tôi đi qua những cơn mưa tuyết ở Frankfurt, cái nắng cháy da tại Valencia, và những đêm rực lửa ở Madrid... từ hôm nay sẽ không còn mùi cỏ cháy nữa.</p>
+      <p>Người ta gọi tôi là một huyền thoại bất tử. Họ đếm 58 bàn thắng của tôi ở Madrid, họ chỉ vào hat-trick trong đêm Rome Thiên thanh, họ lóa mắt trước Quả bóng vàng tại Paris. Nhưng các bạn có biết không? Đêm nay, khi nhắm mắt lại, tôi không nhìn thấy vàng ròng hay cúp bạc.</p>
+      <p>Tôi nhìn thấy một phòng bệnh nồng nặc mùi cồn sát trùng ở Frankfurt. Tôi nhìn thấy bóng dáng mình cô độc trong căn hộ tối om ở London. Và xa hơn nữa, tôi nhìn thấy một thằng nhóc gầy gò, run rẩy bước ra từ đường hầm Philips Stadion, ghi đúng một bàn thắng sau năm trận đấu đầu tiên dưới những cái lắc đầu ngán ngẩm của người dân Eindhoven.</p>
+      <p>Bóng đá chuyên nghiệp là một cỗ máy nghiền thịt kiêu ngạo. Nó sẽ dìm bạn xuống vũng bùn khi bạn sa sút, nó sẽ phản bội bạn khi bạn chấn thương, và nó sẽ tìm cách định nghĩa bạn theo cách mà nó muốn.</p>
+      <p>Lời khuyên duy nhất, cũng là di sản lớn nhất tôi muốn để lại cho những đứa trẻ đang ôm quả bóng ngoài kia: <strong style="color:var(--gold);">Đừng bao giờ để thế giới này quyết định bạn là ai.</strong></p>
+      <ul style="list-style:none; padding:0; margin: 30px 0;">
+        <li style="padding: 12px 0 12px 20px; border-left:2px solid var(--gold-dim); margin-bottom:12px; color:var(--light-gray);">Khi Frankfurt vứt bỏ bạn, hãy biến nó thành đống tro tàn để hồi sinh.</li>
+        <li style="padding: 12px 0 12px 20px; border-left:2px solid var(--gold-dim); margin-bottom:12px; color:var(--light-gray);">Khi Arsenal giam cầm bản năng của bạn, hãy có can đảm quay lưng bỏ đi.</li>
+        <li style="padding: 12px 0 12px 20px; border-left:2px solid var(--gold-dim); color:var(--light-gray);">Khi cả thế giới nghi ngờ đôi chân của bạn, hãy buộc họ phải quỳ gối trước nanh vuốt của bạn.</li>
+      </ul>
+      <p>Cảm ơn Strasbourg vì cái bắt tay trong bóng tối. Cảm ơn Valencia vì đã cho tôi một chiếc phao cứu sinh. Cảm ơn Atlético vì đã cùng tôi tạo nên một siêu bão. Cảm ơn Barcelona vì một chương sách đầy kiêu hãnh. Và cảm ơn Juventus, cảm ơn em trai tôi — vì đã cùng tôi khép lại vòng tròn số phận một cách hoàn hảo nhất dưới hai màu Đen và Trắng.</p>
+      <p>Tôi rời khỏi thảm cỏ này không một chút tiếc nuối. Tôi đã đòi lại tất cả những gì số phận từng nợ mình. Tôi đã sống, đã chiến đấu, và đã trở thành bất tử theo cách của riêng tôi.</p>
+      <p style="font-style:italic; color:var(--gray);">Tạm biệt trò chơi vĩ đại nhất thế giới.</p>
+    </div>
+    <div class="letter-sig reveal">
+      <span class="letter-sig-location">Turin, một đêm không ngủ</span>
+      <span>Aphrodi</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-title">THE APHRODI ARCHIVE</p>
+  <p>From Eindhoven to Immortality · A Story of Resilience</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Active nav
+  const chapters = document.querySelectorAll('.chapter, .letter-section');
+  const navItems = document.querySelectorAll('.nav-item');
+
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navItems.forEach(n => n.classList.remove('active'));
+        const id = entry.target.id;
+        const activeNav = document.querySelector(`.nav-item[href="#${id}"]`);
+        if (activeNav) activeNav.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('[id^="ch"], #letter').forEach(el => navObserver.observe(el));
+</script>
+</body>
+</html>
